@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频去水印下载工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 欢迎词滚动条 -->
+    <div class="welcome-banner">
+        <div class="marquee">
+            <span>Hello!我是青涧,一个Vibe Coding 学习者,本网站仅限学习使用,不做他用!</span>
+        </div>
+    </div>
+    <!-- 密码验证界面 -->
+    <div id="auth-container" class="container">
+        <div class="auth-box">
+            <h1>🎬 视频去水印下载工具</h1>
+            <p class="auth-description">请输入访问密码以继续使用</p>
+            <div class="input-group">
+                <input type="password" id="password-input" placeholder="请输入密码" maxlength="20">
+                <button id="auth-btn" onclick="authenticate()">验证</button>
+            </div>
+            <div id="auth-error" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- 主功能界面 -->
+    <div id="main-container" class="container hidden">
+        <div class="main-box">
+            <h1>🎬 视频去水印下载工具</h1>
+            <p class="description">支持抖音等平台视频去水印下载</p>
+            
+            <!-- 链接输入区域 -->
+            <div class="input-section">
+                <label for="video-link">视频分享链接：</label>
+                <textarea id="video-link" placeholder="请粘贴视频分享链接，例如：\n抖音链接:4.66 EHI:/ 11/14 E@u.Fh 地表最强壮汉海钓深海巨物 # 海钓 # 海钓船钓 # 钓鱼  https://v.douyin.com/mumWz79W78A/ 复制此链接，打开Dou音搜索，直接观看视频！" rows="4"></textarea>
+                <button id="parse-btn" onclick="parseVideo()">🔍 开始解析</button>
+            </div>
+
+            <!-- 加载状态 -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>正在解析视频信息...</p>
+            </div>
+
+            <!-- 解析结果展示区域 -->
+            <div id="result-section" class="result-section hidden">
+                <h3>📹 解析结果</h3>
+                <div class="result-content">
+                    <div class="video-info">
+                        <h4 id="video-title">视频标题</h4>
+                        <div class="video-preview" style="width: 100%; height: 300px; border: 1px solid #ddd; margin: 10px 0; overflow: hidden; position: relative; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                            <img id="video-cover" src="" alt="视频封面" class="cover-image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            <!-- 只显示一张封面图片 -->
+                        </div>
+                    </div>
+                    <div class="download-section">
+                        <h4>📥 下载选项</h4>
+                        <div class="download-buttons">
+                            <button id="download-video-btn" class="download-btn video-btn" onclick="downloadVideo()">
+                                📹 下载视频
+                            </button>
+                            <button id="download-cover-btn" class="download-btn cover-btn" onclick="downloadCover()">
+                                🖼️ 下载封面
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 错误信息显示 -->
+            <div id="error-section" class="error-section hidden">
+                <h3>❌ 解析失败</h3>
+                <p id="error-message">请检查链接是否正确或稍后重试</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
